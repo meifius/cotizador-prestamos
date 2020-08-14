@@ -5,7 +5,9 @@ import RNPickerSelect from 'react-native-picker-select';
 // import RNPickerSelect from '@react-native-community/picker';
 import colors from './../utils/colors';
 
-function Form() {
+function Form( props ) {
+  const {setCapital, setInterest, setMonths} = props;
+
   return (
     <View style={styles.viewForm}>
       <View style={styles.viewInputs}>
@@ -13,20 +15,28 @@ function Form() {
           placeholder="Cantidad a pedir"
           keyboardType="numeric"
           style={styles.input}
-        />
+          onChange={ e => { setCapital(e.nativeEvent.text); } }
+          />
         <TextInput
           placeholder="Interes %"
           keyboardType= "numeric"
           style={[styles.input, styles.inputPercentage ]}
-        />
+          onChange={ e => { setInterest(e.nativeEvent.text); } }
+          />
       </View>
       <RNPickerSelect
+        style={picketSelectStyles}
         useNativeAndroidPickerStyle={false}
-        onValueChange={(value) => console.log(value)}
+        onValueChange={(value) => setMonths(value)}
+        placeholder={{
+          label: 'Selecciona los plazos',
+          value: null,
+        }}
         items={[
-          {label: 'Football', value: 'football'},
-          {label: 'Baseball', value: 'baseball'},
-          {label: 'Hockey', value: 'hockey'},
+          {label: '3 meses', value: 3},
+          {label: '6 meses', value: 6},
+          {label: '12 meses', value: 12},
+          {label: '24 meses', value: 24},
         ]}
       />
     </View>
@@ -38,7 +48,8 @@ export default Form;
 const styles = StyleSheet.create({
   viewForm: {
     position: 'absolute',
-    bottom: -90,
+    bottom: 0,
+    // bottom: -90,
     width: '85%',
     paddingHorizontal:50,
     backgroundColor: colors.PRIMARY_COLOR_DARK,
@@ -65,5 +76,35 @@ const styles = StyleSheet.create({
   inputPercentage: {
     width: '40%',
     marginLeft: 5,
+  },
+});
+
+
+const picketSelectStyles = StyleSheet.create({
+  inputIOS: {
+    fontSize: 16,
+    paddingVertical: 12,
+    paddingHorizontal: 12,
+    borderWidth: 1,
+    borderColor: 'grey',
+    borderRadius: 4,
+    color: 'black',
+    paddingRight: 30,
+    backgroundColor: '#fff',
+    marginLeft: -5,
+    marginRight: -5,
+  },
+  inputAndroid: {
+    fontSize: 16,
+    paddingVertical: 10,
+    paddingHorizontal: 8,
+    borderWidth: 0.5,
+    borderColor: 'grey',
+    borderRadius: 8,
+    color: 'black',
+    paddingRight: 30,
+    backgroundColor: '#fff',
+    // marginLeft: -5,
+    // marginRight: -5,
   },
 });
