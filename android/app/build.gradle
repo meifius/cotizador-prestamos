@@ -129,7 +129,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.cotizadorprestamos"
+        applicationId "com.meifius.cotizadorprestamos"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

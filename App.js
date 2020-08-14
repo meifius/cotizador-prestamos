@@ -25,9 +25,9 @@ function App() {
   const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
-    if (capital && interest && months){
+    if (capital && interest && months) {
       calculate();
-    }else {
+    } else {
       reset();
     }
   }, [capital, interest, months]);

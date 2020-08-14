@@ -1,4 +1,4 @@
-package com.cotizadorprestamos;
+package com.meifius.cotizadorprestamos;
 
 import com.facebook.react.ReactActivity;
 
